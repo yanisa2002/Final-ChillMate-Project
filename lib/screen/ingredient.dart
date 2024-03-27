@@ -1,5 +1,6 @@
 import 'package:chillmate/data/secure_storage.dart';
 import 'package:chillmate/models/fridge.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -40,9 +41,9 @@ class _IngredientState extends State<Ingredient> {
       String token = await SecureStorage().readSecureData('token');
       var headers = {'Authorization': 'Bearer ${token}'};
       print(
-          'http://161.246.5.159:7504/Ingredients/remove?uudi=' + idIngredient);
+          '${AssetConst.API_URL}Ingredients/remove?uudi=' + idIngredient);
       Response response = await delete(
-        Uri.parse('http://161.246.5.159:7504/Ingredients/remove?uudi=' +
+        Uri.parse('${AssetConst.API_URL}Ingredients/remove?uudi=' +
             idIngredient),
         headers: headers,
       );

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chillmate/models/exp.dart';
 import 'package:chillmate/models/obj.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -17,7 +18,7 @@ class ImageUploadService {
         });
 
         Response response = await dio.put(
-          'http://161.246.5.159:7504/model/obj',
+          '${AssetConst.API_URL}model/obj',
           data: formData,
         );
 
@@ -38,7 +39,7 @@ class ImageUploadService {
     }
   }
 
-  Future<EXP?> uploadImageExp(XFile? pickedFile) async {
+  Future<EXPdata?> uploadImageExp(XFile? pickedFile) async {
     try {
       Dio dio = Dio();
 
@@ -49,14 +50,14 @@ class ImageUploadService {
         });
 
         Response response = await dio.put(
-          'http://161.246.5.159:7504/model/exp',
+          '${AssetConst.API_URL}model/exp',
           data: formData,
         );
 
         if (response.statusCode == 200) {
           print('Image uploaded sucessfully');
           print(response.data);
-          EXP dataEXP = EXP.fromJson(response.data);
+          EXPdata dataEXP = EXPdata.fromJson(response.data);
           print(dataEXP);
           return dataEXP;
         } else {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:chillmate/data/secure_storage.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/forgotPassword.dart';
 import 'package:chillmate/screen/nav.dart';
 import 'package:chillmate/screen/signup.dart';
@@ -15,8 +16,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // final _text = TextEditingController();
-  // bool _validate = false;
   final storage = new FlutterSecureStorage();
 
   final _formKey = GlobalKey<FormState>();
@@ -29,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
   void login(String username, password) async {
     try {
       Response response = await post(
-          //Uri.parse('https://240a-161-246-144-211.ngrok-free.app/user/login'),
-          Uri.parse('http://161.246.5.159:7504/user/login'),
+        
+          Uri.parse('${AssetConst.API_URL}user/login'),
           body: {'Username': username, 'Password': password});
 
       var data = jsonDecode(response.body.toString());

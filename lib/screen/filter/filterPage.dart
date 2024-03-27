@@ -4,6 +4,7 @@ import 'package:chillmate/data/repository.dart';
 import 'package:chillmate/data/secure_storage.dart';
 import 'package:chillmate/models/raw.dart';
 import 'package:chillmate/models/recipe.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:chillmate/widgets/slider_view.dart';
@@ -80,7 +81,7 @@ class _FilterPageState extends State<FilterPage> {
     print(Type);
     try {
       Response response = await post(
-          Uri.parse('http://161.246.5.159:7504/recipe/filter'),
+          Uri.parse('${AssetConst.API_URL}recipe/filter'),
           body: {'ingredients': ingredient.join(','), 'type': Type.join(',')},
           headers: headers);
 

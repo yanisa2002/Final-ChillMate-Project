@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chillmate/data/secure_storage.dart';
 import 'package:chillmate/models/recipe.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/detailRecipePage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -25,7 +26,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
     var headers = {'Authorization': 'Bearer ${token}'};
     try {
       Response response = await get(
-          Uri.parse('http://161.246.5.159:7504/recipe/search?searching=' +
+          Uri.parse('${AssetConst.API_URL}recipe/search?searching=' +
               nameSearch),
           headers: headers);
 

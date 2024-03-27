@@ -1,4 +1,5 @@
 import 'package:chillmate/data/secure_storage.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../screen/nav.dart';
@@ -18,7 +19,7 @@ class _AddRefriState extends State<AddRefri> {
     String token = await SecureStorage().readSecureData('token');
     try {
       Response response = await post(
-          Uri.parse('http://161.246.5.159:7504/Fridge/create'),
+          Uri.parse('${AssetConst.API_URL}Fridge/create'),
           headers: {'Authorization': 'Bearer ${token}'},
           body: {'name': Namefridge});
       print(token);

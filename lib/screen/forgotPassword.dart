@@ -1,4 +1,5 @@
 
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +35,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     try {
       var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
       var request = http.Request(
-          'GET', Uri.parse('http://161.246.5.159:7504/user/forget'));
+          'GET', Uri.parse('${AssetConst.API_URL}user/forget'));
       request.bodyFields = {'email': email};
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();

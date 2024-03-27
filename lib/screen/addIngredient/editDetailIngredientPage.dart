@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:chillmate/data/repository.dart';
 import 'package:chillmate/data/secure_storage.dart';
 import 'package:chillmate/models/raw.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/nav.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -54,7 +55,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
   var now = DateTime.now();
   var formatter = DateFormat("dd/MM/yyyy");
 
-
   String transformShowDate(String? date) {
     if (date == null) return '';
 
@@ -92,7 +92,7 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
       print("------Edit Ingredient------");
       var headers = {'Authorization': 'Bearer ${token}'};
       Response response =
-          await post(Uri.parse('http://161.246.5.159:7504/Ingredients/edit'),
+          await post(Uri.parse('${AssetConst.API_URL}Ingredients/edit'),
               body: {
                 'uudiIngredients': uuid,
                 'type': type,
@@ -119,7 +119,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
         );
       } else {
         print('failed');
-
       }
     } catch (e) {
       print(e.toString());
@@ -161,7 +160,7 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
+    //DateTime selectedDate = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -196,7 +195,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
                   mfg,
                   exp,
                   _selectedNoti!);
-             
             },
             icon: Icon(Icons.done),
             color: Colors.green,
@@ -231,7 +229,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
                                 value: item,
                                 child: Text(
                                   item,
-                                 
                                   style: TextStyle(fontSize: 18),
                                 ),
                               ))
@@ -285,7 +282,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
                           focusNode: node,
                           decoration:
                               InputDecoration(hintText: 'ชื่อวัตถุดิบ...'),
-                    
                         );
                       },
                       displayStringForOption: (Ingre option) => option.nameing!,
@@ -308,7 +304,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
                     "ปริมาณ",
                     style: TextStyle(fontSize: 20),
                   ),
-           
                   SizedBox(
                     width: 200,
                     child: TextFormField(
@@ -323,7 +318,6 @@ class _EditDetailIngredientPageState extends State<EditDetailIngredientPage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         hintText: 'Amount',
-                    
                         fillColor: Colors.white,
                         filled: true,
                       ),

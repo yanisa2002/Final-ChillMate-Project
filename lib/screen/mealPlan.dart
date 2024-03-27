@@ -21,53 +21,7 @@ class _MealPlanState extends State<MealPlan> {
   late TextEditingController controller;
   String cal = '';
 
-  List breakfastArr = [
-    {
-      "name": "Honey Pancake",
-      "time": "07:00am",
-      "image": "assets/images/food3.jpg"
-    },
-    {"name": "Coffee", "time": "07:30am", "image": "assets/images/food3.jpg"},
-  ];
-
   List<Menu> listRecipeBreakfast = [
-    Menu(
-      recipe: Recipe(
-        recipeID: "89ecfbd8-1de2-46f2-a0b3-42bde09c42ce",
-        recipeName: "ผัดวุ้นเส้น",
-        category: ["อาหารไทย"],
-        method:
-            "STEp 1:นำวุ้นเส้นไปแช่น้ำ ทิ้งไว้ประมาณ 15 นาที จากนั้นจึงนำมาสะเด็ดน้ำให้แห้ง แล้วพักไว้ STEP 2:ตั้งกระทะใส่น้ำมัน แล้วเปิดไฟกลาง รอจนน้ำมันร้อนจึงใส่กระเทียม ตามด้วยหมูและหอมใหญ่ลงไปผัดจนหมูเกือบสุก STEP 3:จากนั้นใส่ไข่ไก่ลงไป ใช้ตะหลิวเขี่ยไข่แดงให้แตกทิ้งไว้สักพัก พอไข่เริ่มสุกใส่วุ้นเส้น มะเขือเทศ กะหล่ำปลี และต้นหอมลงไปผัดต่อจนสุก ปรุงรสและผัดจนส่วนผสมทั้งหมดเข้ากันดี พร้อมจัดเสิร์ฟ",
-        cookingTime: 45,
-        image: "c0b611acf5252dfb8b20c0ca1e4888fe.png",
-        colorie: 114.205,
-        usernameID: UsernameID(
-          userID: "4230306d-5601-46cb-8e66-135843c4c24b",
-          userName: "Thanakrit",
-          name: "ธนกฤต ศิริชัย",
-          email: "kittykan0808@gmail.com",
-          password: "123456",
-          image: "asset/img/profile/1709691439741-new.jpg",
-          timeAT: "2024-03-05T05:46:51.276Z",
-          interest: null,
-          allogre: null,
-          role: 1,
-        ),
-        ingredients: [
-          Ingredients(
-            ingredientsID: "1c0cd49b-87e8-465a-8404-03772c070e79",
-            amount: 15,
-            rawMaterial: RawMaterial(
-              rawMaterialID: "080a067a-4c8c-4743-80c4-9ac5a7432713",
-              amount: 34,
-              nameing: "ต้นหอม",
-            ),
-          ),
-        ],
-        ratings: [],
-      ),
-      rate: 0,
-    ),
     Menu(
       recipe: Recipe(
         recipeID: "89ecfbd8-1de2-46f2-a0b3-42bde09c42ce",

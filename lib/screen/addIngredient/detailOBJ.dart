@@ -40,43 +40,38 @@ class _DetailOBJState extends State<DetailOBJ> {
     if (pickedFile != null) {
       try {
         var data = await uploadService.uploadImageExp(pickedFile!);
+        EXPdata? dataEXP = data;
+        print('eeeeeee');
+        print('data is');
+        print(dataEXP?.message?.data?.eXP?.y);
+        print(dataEXP?.message?.data?.eXP?.d);
+        print(dataEXP?.message?.data?.eXP?.m);
 
-        if (data != null) {
-          // Use the captured context
-          if (mounted) {
-            setState(() {
-              EXPdata? dataEXP = data as EXPdata?;
-            });
-          }
+        String? Exy = dataEXP?.message?.data?.eXP?.y ?? '';
+        String? Exd = dataEXP?.message?.data?.eXP?.d ?? '';
+        String? Exm = dataEXP?.message?.data?.eXP?.m ?? '';
+        String ExpAll = Exd + '/' + Exm + '/' + Exy;
+        String? Py = dataEXP?.message?.data?.pD?.y ?? '';
+        String? Pd = dataEXP?.message?.data?.pD?.d ?? '';
+        String? Pm = dataEXP?.message?.data?.pD?.m ?? '';
+        String pAll = Pd + '/' + Pm + '/' + Py;
 
-          print(dataEXP);
-
-          String? Exy = dataEXP?.message?.data?.eXP!.y;
-          String? Exd = dataEXP?.message?.data?.eXP!.d;
-          String? Exm = dataEXP?.message?.data?.eXP!.m;
-          String ExpAll = Exd! + '/' + Exm! + '/' + Exy!;
-          String? Py = dataEXP?.message?.data?.pD!.y;
-          String? Pd = dataEXP?.message?.data?.pD!.d;
-          String? Pm = dataEXP?.message?.data?.pD!.m;
-          String pAll = Pd! + '/' + Pm! + '/' + Py!;
-
-          Navigator.push(
-            currentContext,
-            MaterialPageRoute(
-              builder: (context) => DetailEXP(
-                fridgeNameSave: widget.fridgeNameSave,
-                id: widget.id,
-                subclass: resultToSent,
-                detailClass: namePredict,
-                EXP: ExpAll,
-                PD: pAll,
-              ),
+        Navigator.push(
+          currentContext,
+          MaterialPageRoute(
+            builder: (context) => DetailEXP(
+              fridgeNameSave: widget.fridgeNameSave,
+              id: widget.id,
+              subclass: widget.subclass,
+              detailClass: namePredict,
+              subClassname: widget.subClassname,
+              EXP: ExpAll,
+              PD: pAll,
             ),
-          );
-        } else {
-          print('Error: Data is null');
-        }
+          ),
+        );
       } catch (error) {
+        print('Error is');
         print('Error: $error');
       }
     } else {
@@ -87,7 +82,8 @@ class _DetailOBJState extends State<DetailOBJ> {
   List<String> extractDataInParentheses(List<String> subClassDetail) {
     return subClassDetail.map((item) {
       final match = RegExp(r'\((.*?)\)').firstMatch(item);
-      return match?.group(1) ?? '';
+      return match?.group(1) ??
+          ''; // ถ้าไม่พบข้อมูลในวงเล็บ ให้ return ข้อความว่าง
     }).toList();
   }
 
@@ -102,6 +98,7 @@ class _DetailOBJState extends State<DetailOBJ> {
   Widget build(BuildContext context) {
     print(namePredict);
     List<String> result = extractDataInParentheses(widget.subclass!);
+    print(result);
     return Scaffold(
       appBar: AppBar(title: Text('ผลลัพธ์การแสกนวัตถุดิบ')),
       body: Container(
@@ -196,7 +193,7 @@ class _DetailOBJState extends State<DetailOBJ> {
                         resultToSent = result;
                         print(resultToSent);
                       });
-
+                      //pickedImage();
                       Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/login.dart';
 import 'package:chillmate/screen/signup.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _ValidationState extends State<Validation> {
   ) async {
     try {
       Response response = await post(
-          Uri.parse('http://161.246.5.159:7504/user/regiter'),
+          Uri.parse('${AssetConst.API_URL}user/regiter'),
           body: {
             'otp': otp,
             'id': id,

@@ -14,11 +14,15 @@ class AddIngredientNoDate extends StatefulWidget {
   final String uuID;
   final String predictClass;
   final List<String> SubDetail;
+  final String? PD;
+  final String? EXP;
   const AddIngredientNoDate({
     required this.fridgeName,
     required this.uuID,
     required this.predictClass,
     required this.SubDetail,
+    this.PD,
+    this.EXP,
     Key? key,
   }) : super(key: key);
 
@@ -86,20 +90,20 @@ class _AddIngredientNoDateState extends State<AddIngredientNoDate> {
       String token = await SecureStorage().readSecureData('token');
       print("Recipeeeee");
       var headers = {'Authorization': 'Bearer ${token}'};
-      Response response = await post(
-          Uri.parse('http://161.246.5.159:7504/Ingredients/add'),
-          body: {
-            'uudifridge': uuid,
-            'type': type,
-            'nameing': nameing,
-            'amount': amount,
-            'Unit': unit,
-            'MFG': mfg,
-            'EXP': exp,
-            'ntPeriod': noti,
-            'img_path': img,
-          },
-          headers: headers);
+      Response response =
+          await post(Uri.parse('http://161.246.5.159:7504/Ingredients/add'),
+              body: {
+                'uudifridge': uuid,
+                'type': type,
+                'nameing': nameing,
+                'amount': amount,
+                'Unit': unit,
+                'MFG': mfg,
+                'EXP': exp,
+                'ntPeriod': noti,
+                'img_path': img,
+              },
+              headers: headers);
 
       var data = jsonDecode(response.body.toString());
       //print(data['access_token']);
@@ -182,7 +186,6 @@ class _AddIngredientNoDateState extends State<AddIngredientNoDate> {
             onPressed: () {
               addIngredient(widget.uuID, _selectedCata!, nameController.text,
                   amountController.text, "กรัม", mfg, exp, _selectedNoti!, img);
-
             },
             icon: Icon(Icons.done),
             color: Colors.green,
@@ -274,7 +277,6 @@ class _AddIngredientNoDateState extends State<AddIngredientNoDate> {
                       value: _selectedName,
                     ),
                   )
-                 
                 ],
               ),
             ),
@@ -287,7 +289,6 @@ class _AddIngredientNoDateState extends State<AddIngredientNoDate> {
                     "ปริมาณ",
                     style: TextStyle(fontSize: 20),
                   ),
-                 
                   SizedBox(
                     width: 200,
                     child: TextFormField(

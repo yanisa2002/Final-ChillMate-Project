@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/setting/ProfileViewPage.dart';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -78,7 +79,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         "img": await MultipartFile.fromFile(filePath.path, filename: fileName),
       });
       Response response = await Dio()
-          .post("http://161.246.5.159:7500/user/chageimage", data: formData);
+          .post("${AssetConst.API_URL}user/chageimage", data: formData);
       print("File upload response: $response");
     } catch (e) {
       print("expectation Caugch: $e");

@@ -1,9 +1,6 @@
-import 'package:chillmate/screen/nav.dart';
 import 'package:chillmate/widgets/recipe_form.dart';
-//import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-//import 'package:iconsax/iconsax.dart';
 
 class CreateRecipe extends StatefulWidget {
   const CreateRecipe({Key? key}) : super(key: key);
@@ -13,7 +10,6 @@ class CreateRecipe extends StatefulWidget {
 }
 
 class _CreateRecipeState extends State<CreateRecipe> {
-  
   List<String> listFoodCatagory = [
     'ผัก',
     'ผลไม้',
@@ -79,21 +75,16 @@ class _CreateRecipeState extends State<CreateRecipe> {
           color: Colors.amber,
           iconSize: 40,
         ),
-        actions: [
-          
-        ],
+        actions: [],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
             RecipeForm(),
-            
           ],
         ),
       ),
     );
   }
-
-  
 }

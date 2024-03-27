@@ -6,6 +6,7 @@ import 'package:chillmate/models/raw.dart';
 import 'package:chillmate/models/recipe.dart';
 import 'package:chillmate/models/saveRecipe.dart';
 import 'package:chillmate/models/userData.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:http/http.dart';
 
 class Repository {
@@ -58,7 +59,8 @@ class Repository {
   Future<List<Ingre>> getRaw() async {
     String token = await SecureStorage().readSecureData('token');
     var headers = {'Authorization': 'Bearer ${token}'};
-    var response = await get(Uri.parse(uri + '/raw'), headers: headers);
+    var response =
+        await get(Uri.parse('${AssetConst.API_URL}raw'), headers: headers);
     print("--getRaw--");
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -81,8 +83,8 @@ class Repository {
 
     print(headers);
     print('start');
-    var response =
-        await get(Uri.parse(uri + '/recipe/recommen'), headers: headers);
+    var response = await get(Uri.parse('${AssetConst.API_URL}recipe/recommen'),
+        headers: headers);
 
     print("----");
     print(response.statusCode);
@@ -107,7 +109,8 @@ class Repository {
 
     print(headers);
     print('start');
-    var response = await get(Uri.parse(uri + '/recipe'), headers: headers);
+    var response =
+        await get(Uri.parse('${AssetConst.API_URL}recipe'), headers: headers);
 
     print("----");
     print(response.statusCode);
@@ -130,7 +133,8 @@ class Repository {
     print("Recipeeeee");
     var headers = {'Authorization': 'Bearer ${token}'};
     print('start');
-    var response = await get(Uri.parse(uri + '/recipe/save'), headers: headers);
+    var response = await get(Uri.parse('${AssetConst.API_URL}recipe/save'),
+        headers: headers);
 
     print("----SaveRecipe");
     print(response.statusCode);
@@ -153,7 +157,8 @@ class Repository {
     print("Search");
     var headers = {'Authorization': 'Bearer ${token}'};
     print('start');
-    var response = await get(Uri.parse(uri + '/recipe/search?searching=' + id),
+    var response = await get(
+        Uri.parse('${AssetConst.API_URL}recipe/search?searching=' + id),
         headers: headers);
     print("----Search");
     print(response.statusCode);

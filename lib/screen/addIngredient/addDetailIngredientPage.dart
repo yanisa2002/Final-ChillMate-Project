@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:ui';
-
 import 'package:chillmate/data/repository.dart';
 import 'package:chillmate/data/secure_storage.dart';
 import 'package:chillmate/models/raw.dart';
+import 'package:chillmate/pkg/constant/asset.dart';
 import 'package:chillmate/screen/nav.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -80,21 +79,20 @@ class _AddDetailIngredientPageState extends State<AddDetailIngredientPage> {
       String token = await SecureStorage().readSecureData('token');
       print("Recipeeeee");
       var headers = {'Authorization': 'Bearer ${token}'};
-      Response response = await post(
-          //Uri.parse('https://240a-161-246-144-211.ngrok-free.app/user/login'),
-          Uri.parse('http://161.246.5.159:7504/Ingredients/add'),
-          body: {
-            'uudifridge': uuid,
-            'type': type,
-            'nameing': nameing,
-            'amount': amount,
-            'Unit': unit,
-            'MFG': mfg,
-            'EXP': exp,
-            'ntPeriod': noti,
-            'img_path': img,
-          },
-          headers: headers);
+      Response response =
+          await post(Uri.parse('${AssetConst.API_URL}Ingredients/add'),
+              body: {
+                'uudifridge': uuid,
+                'type': type,
+                'nameing': nameing,
+                'amount': amount,
+                'Unit': unit,
+                'MFG': mfg,
+                'EXP': exp,
+                'ntPeriod': noti,
+                'img_path': img,
+              },
+              headers: headers);
 
       var data = jsonDecode(response.body.toString());
       //print(data['access_token']);

@@ -1,4 +1,5 @@
 import 'package:chillmate/models/exp.dart';
+import 'package:chillmate/screen/addIngredient/addIngredientNoDate.dart';
 import 'package:chillmate/services/imageUploadService.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,7 +38,7 @@ class _DetailEXPState extends State<DetailEXP> {
     return subClassDetail.map((item) {
       final match = RegExp(r'\((.*?)\)').firstMatch(item);
       return match?.group(1) ??
-          '';
+          ''; // ถ้าไม่พบข้อมูลในวงเล็บ ให้ return ข้อความว่าง
     }).toList();
   }
 
@@ -79,8 +80,71 @@ class _DetailEXPState extends State<DetailEXP> {
                 ),
               ),
               Container(padding: EdgeInsets.all(10), child: Text('${result}')),
+              Row(
+                children: [
+                  Text('PD : '),
+                  Text('${widget.PD}'),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('EXP : '),
+                  Text('${widget.EXP}'),
+                ],
+              ),
               SizedBox(
                 height: 20,
+              ),
+              Container(
+                width: 300,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Color(0xFFB01E68),
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        resultToSent = result;
+                        print(resultToSent);
+                      });
+                      //pickedImage();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddIngredientNoDate(
+                                  fridgeName: widget.fridgeNameSave,
+                                  uuID: widget.id,
+                                  predictClass: namePredict,
+                                  SubDetail: resultToSent,
+                                  PD: widget.PD,
+                                  EXP: widget.EXP,
+                                )),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(30),
+                    child: const Center(
+                      child: Text(
+                        "เพิ่มข้อมูลวัตถุดิบ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           )),
